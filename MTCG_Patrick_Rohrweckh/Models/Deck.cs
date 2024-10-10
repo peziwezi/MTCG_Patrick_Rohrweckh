@@ -8,5 +8,11 @@ namespace MTCG_Patrick_Rohrweckh.Models
 {
     internal class Deck
     {
+        public List<Card> Cards { get; set; }
+        public Deck() 
+        {
+            Cards = new List<Card>();
+        }
+        public const int DeckMax = 4;
     }
 }

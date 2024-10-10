@@ -8,5 +8,10 @@ namespace MTCG_Patrick_Rohrweckh.Models
 {
     internal class Stack
     {
+        public List<Card> Cards { get; set; }
+        public Stack() 
+        {
+            Cards = new List<Card>();
+        }
     }
 }

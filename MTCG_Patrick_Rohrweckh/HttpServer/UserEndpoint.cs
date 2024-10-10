@@ -19,42 +19,56 @@ namespace MTCG_Patrick_Rohrweckh
             {
                 if (request.content != null)
                 {
-                    User user = JsonConvert.DeserializeObject<User>(request.content);
-                    if (user != null)
+                    try
                     {
-                        if (request.path == "/users" && request.method == "POST")
+                        User user = JsonConvert.DeserializeObject<User>(request.content);
+                        if (user != null)
                         {
-                            try
+                            if (request.method == "POST")
                             {
-                                database.Add(user.Username, user.Password);
-                                response.WriteResponse(201, "", "");
-                            }
-                            catch (ArgumentException)
-                            {
-                                response.WriteResponse(409, "User already exists", "");
-                            }
-                        }
-                        else if (request.path == "/sessions" && request.method == "POST")
-                        {
-                            string value = "";
-                            if (database.TryGetValue(user.Username, out value))
-                            {
-                                if (database[user.Username] == user.Password)
+                                if (request.path == "/users")
                                 {
-                                    string token = user.Username + "-mtcgToken";
-                                    string json = JsonConvert.SerializeObject(token);
-                                    response.WriteResponse(200, "", json);
+                                    try
+                                    {
+                                        database.Add(user.Username, user.Password);
+                                        response.WriteResponse(201, "", "");
+                                    }
+                                    catch (ArgumentException)
+                                    {
+                                        response.WriteResponse(409, "User already exists", "");
+                                    }
                                 }
-                                else
+                                else if (request.path == "/sessions")
                                 {
-                                    response.WriteResponse(401, "Login failed", "");
+                                    string value = "";
+                                    if (database.TryGetValue(user.Username, out value))
+                                    {
+                                        if (database[user.Username] == user.Password)
+                                        {
+                                            string token = user.Username + "-mtcgToken";
+                                            string json = JsonConvert.SerializeObject(token);
+                                            response.WriteResponse(200, "", json);
+                                        }
+                                        else
+                                        {
+                                            response.WriteResponse(401, "Login failed", "");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        response.WriteResponse(401, "Login failed", "");
+                                    }
                                 }
                             }
                             else
                             {
-                                response.WriteResponse(401, "Login failed", "");
+                                response.WriteResponse(405, "Method Not Allowed", "");
                             }
                         }
+                    }
+                    catch (JsonReaderException) 
+                    {
+                        response.WriteResponse(400, "Bad Request", "");
                     }
                 }
                 else

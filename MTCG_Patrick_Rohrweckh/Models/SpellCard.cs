@@ -8,5 +8,8 @@ namespace MTCG_Patrick_Rohrweckh.Models
 {
     internal class SpellCard : Card
     {
+        public SpellCard(string name, int amount, Element type) : base(name, amount, type)
+        {
+        }
     }
 }
