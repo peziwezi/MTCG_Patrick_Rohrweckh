@@ -1,86 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="MTCG_Patrick_Rohrweckh.HttpRequest" Collapsed="true">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpRequest">
+    <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAACAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HttpServer\HttpRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.HttpResponse" Collapsed="true">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpResponse">
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>HttpServer\HttpResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer" Collapsed="true">
-    <Position X="6.75" Y="1.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer">
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAA=</HashCode>
       <FileName>HttpServer\HttpServer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.UserEndpoint" Collapsed="true">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.UserEndpoint">
+    <Position X="9.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HttpServer\UserEndpoint.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.User" Collapsed="true">
-    <Position X="8.5" Y="2.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.User">
+    <Position X="8" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAQAACAAAgAAAAAACAABAAAAAAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StreamTracer" Collapsed="true">
-    <Position X="6.75" Y="2.5" Width="1.5" />
+  <Class Name="StreamTracer">
+    <Position X="4" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HttpServer\SteamTracer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.Card" Collapsed="true">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Card">
+    <Position X="1" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Card.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.Deck" Collapsed="true">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Deck">
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Deck.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.MonsterCard" Collapsed="true">
-    <Position X="2" Y="1.75" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.MonsterCard">
+    <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\MonsterCard.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.Package" Collapsed="true">
-    <Position X="8.5" Y="1.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Package">
+    <Position X="5.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Package.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.SpellCard" Collapsed="true">
-    <Position X="4.25" Y="1.75" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.SpellCard">
+    <Position X="2.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SpellCard.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTCG_Patrick_Rohrweckh.Models.Stack" Collapsed="true">
-    <Position X="10.25" Y="1.5" Width="1.5" />
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Stack">
+    <Position X="9.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Stack.cs</FileName>
     </TypeIdentifier>
   </Class>
