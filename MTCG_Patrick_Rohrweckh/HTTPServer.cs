@@ -17,6 +17,7 @@ namespace MTCG_Patrick_Rohrweckh
         public void Start()
         {
             httpServer.Start();
+            Console.WriteLine("Our first simple HTTP-Server: http://localhost:10001/");
         }
         public TcpClient AcceptTcpClient()
         {
