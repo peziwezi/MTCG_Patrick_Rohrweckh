@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MTCG_Patrick_Rohrweckh
 {
@@ -13,55 +14,67 @@ namespace MTCG_Patrick_Rohrweckh
     {
         public UserEndpoint(HttpRequest request, HttpResponse response, Dictionary<string,string> database)
         {
-            httpRequest = request;
-            httpResponse = response;
             // ----- 2. Do the processing -----
             // .... 
-            if (httpRequest != null)
+            if (request != null)
             {
-                if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
+                if (request.path == "/users" || request.path == "/sessions")
                 {
-                    if (httpRequest.content != null)
+                    if (request.content != null)
                     {
-                        User user = JsonConvert.DeserializeObject<User>(httpRequest.content);
+                        User user = JsonConvert.DeserializeObject<User>(request.content);
                         if (user != null)
                         {
-                            if (httpRequest.path == "/users" && httpRequest.method == "POST")
+                            if (request.path == "/users" && request.method == "POST")
                             {
                                 try
                                 {
                                     database.Add(user.Username, user.Password);
-                                    httpResponse.WriteResponse(201, "");
+                                    response.WriteResponse(201, "", "");
                                 }
                                 catch (ArgumentException)
                                 {
-                                    httpResponse.WriteResponse(409, "User already exists");
+                                    response.WriteResponse(409, "User already exists", "");
                                 }
                                 
 
                             }
-                            else if (httpRequest.path == "/sessions" && httpRequest.method == "POST")
+                            else if (request.path == "/sessions" && request.method == "POST")
                             {
-                                httpResponse.WriteResponse(200, "");
+                                string value = "";
+                                if (database.TryGetValue(user.Username, out value))
+                                {
+                                    if (database[user.Username] == user.Password)
+                                    {
+                                        string token = user.Username + "-mtcgToken";
+                                        string json = JsonConvert.SerializeObject(token);
+                                        response.WriteResponse(200, "", json);
+                                    }
+                                    else
+                                    {
+                                        response.WriteResponse(401, "Login failed", "");
+                                    }
+                                }
+                                else
+                                {
+                                    response.WriteResponse(401, "Login failed", "");
+                                }
                             }
                         }
 
                     }
                     else
                     {
-                        httpResponse.WriteResponse(400, "Bad Request");
+                        response.WriteResponse(400, "Bad Request", "");
                     }
                 }
                 else
                 {
-                    httpResponse.WriteResponse(400, "Bad Request");
+                    response.WriteResponse(400, "Bad Request", "");
                 }
             }
             
         }
-        
-        public HttpRequest httpRequest { get; set; }
-        public HttpResponse httpResponse { get; set; }
         
 
     }

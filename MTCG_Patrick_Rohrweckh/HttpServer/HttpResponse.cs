@@ -14,15 +14,17 @@ namespace MTCG_Patrick_Rohrweckh
         {
              writerAlsoToConsole = new StreamTracer(writer);  // we use a simple helper-class StreamTracer to write the HTTP-Response to the client and to the console
         }
-        public void WriteResponse(int statusCode, string statusMessage)
+        public void WriteResponse(int statusCode, string statusMessage, string content)
         {
             // ----- 3. Write the HTTP-Response -----
 
             writerAlsoToConsole.WriteLine("HTTP/1.0 " + statusCode +" " + statusMessage);    // first line in HTTP-Response contains the HTTP-Version and the status code
-            /*writerAlsoToConsole.WriteLine("Content-Type: text/html; charset=utf-8");     // the HTTP-headers (in HTTP after the first line, until the empy line)
-            writerAlsoToConsole.WriteLine();
-            writerAlsoToConsole.WriteLine("<html><body><h1>Hello World!</h1></body></html>");    // the HTTP-content (here we just return a minimalistic HTML Hello-World)*/
-
+            if(content != "")
+            {
+                writerAlsoToConsole.WriteLine("Content-Type: application/json");     // the HTTP-headers (in HTTP after the first line, until the empy line)
+                writerAlsoToConsole.WriteLine();
+                writerAlsoToConsole.WriteLine(content);    // the HTTP-content 
+            }
             Console.WriteLine("========================================");
         }
         public StreamTracer writerAlsoToConsole;
