@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MTCG_Patrick_Rohrweckh
 {
@@ -16,8 +17,34 @@ namespace MTCG_Patrick_Rohrweckh
             httpResponse = response;
             // ----- 2. Do the processing -----
             // .... 
+            if (httpRequest != null)
+            {
+                if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
+                {
+                    if (httpRequest.content != null)
+                    {
+                        User user = JsonConvert.DeserializeObject<User>(httpRequest.content);
+                        if (httpRequest.path == "/users" && httpRequest.method == "POST")
+                        {
+                            httpResponse.WriteResponse(201, "");
+                        }
+                        else if (httpRequest.path == "/sessions" && httpRequest.method == "POST")
+                        {
+                            httpResponse.WriteResponse(200, "");
+                        }
 
-            Console.WriteLine("----------------------------------------");
+                    }
+                    else
+                    {
+                        httpResponse.WriteResponse(400, "Bad Request");
+                    }
+                }
+                else
+                {
+                    httpResponse.WriteResponse(400, "Bad Request");
+                }
+            }
+            
         }
         
         public HttpRequest httpRequest { get; set; }

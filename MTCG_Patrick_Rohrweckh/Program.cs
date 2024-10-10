@@ -18,7 +18,6 @@ while (true)
     using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
     HttpRequest httpRequest = new HttpRequest(reader);
     HttpResponse httpResponse = new HttpResponse(writer);
-    httpResponse.WriteResponse(200, "Ok");
     UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse);
    
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Nodes;
 using Newtonsoft.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MTCG_Patrick_Rohrweckh
 {
@@ -23,8 +24,9 @@ namespace MTCG_Patrick_Rohrweckh
             if (line != null)
             {
                 Console.WriteLine(line);
-                
-                
+                string[] words = line.Split(' ');
+                method = words[0];
+                path = words[1];
             }
                 
 
@@ -62,8 +64,11 @@ namespace MTCG_Patrick_Rohrweckh
                     data.Append(chars, 0, bytesRead);
                 }
                 Console.WriteLine(data.ToString());
+                content = data.ToString();
             }
-
         }
+        public string? content { get; set; }
+        public string? method { get; set; }
+        public string? path { get; set; }
     }
 }
