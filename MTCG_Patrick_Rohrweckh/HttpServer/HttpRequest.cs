@@ -5,21 +5,29 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Nodes;
+using Newtonsoft.Json;
 
 namespace MTCG_Patrick_Rohrweckh
 {
     internal class HttpRequest
     {
-        public HttpRequest(TcpClient clientSocket)
+        public HttpRequest(StreamReader reader)
         {
-            reader = new StreamReader(clientSocket.GetStream());
+           
             // ----- 1. Read the HTTP-Request -----
             string? line;
-
+            
             // 1.1 first line in HTTP contains the method, path and HTTP version
             line = reader.ReadLine();
             if (line != null)
+            {
                 Console.WriteLine(line);
+                
+                
+            }
+                
+
 
             // 1.2 read the HTTP-headers (in HTTP after the first line, until the empy line)
             int content_length = 0; // we need the content_length later, to be able to read the HTTP-content
@@ -57,6 +65,5 @@ namespace MTCG_Patrick_Rohrweckh
             }
 
         }
-        StreamReader reader {  get; set; }
     }
 }

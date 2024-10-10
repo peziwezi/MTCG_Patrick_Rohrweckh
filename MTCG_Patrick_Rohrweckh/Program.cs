@@ -1,6 +1,7 @@
 ﻿using MTCG_Patrick_Rohrweckh;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 
@@ -8,10 +9,16 @@ using System.Text;
 HttpServer httpServer = new HttpServer(IPAddress.Loopback, 10001);
 httpServer.Start();
 
+
 while (true)
 {
     // ----- 0. Accept the TCP-Client and create the reader and writer -----
     TcpClient clientSocket = httpServer.AcceptTcpClient();
-    HttpRequest httpRequest = new HttpRequest(clientSocket);
-    HttpResponse httpResponse = new HttpResponse(clientSocket);
+    using StreamReader reader = new StreamReader(clientSocket.GetStream());
+    using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
+    HttpRequest httpRequest = new HttpRequest(reader);
+    HttpResponse httpResponse = new HttpResponse(writer);
+    httpResponse.WriteResponse(200, "Ok");
+    UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse);
+   
 }
