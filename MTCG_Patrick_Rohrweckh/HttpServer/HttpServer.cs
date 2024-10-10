@@ -23,8 +23,5 @@ namespace MTCG_Patrick_Rohrweckh
         {
             return httpServer.AcceptTcpClient();
         }
-        
-        
-
     }
 }

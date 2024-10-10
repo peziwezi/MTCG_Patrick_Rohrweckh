@@ -18,6 +18,14 @@ while (true)
     using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
     HttpRequest httpRequest = new HttpRequest(reader);
     HttpResponse httpResponse = new HttpResponse(writer);
-    UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, database);
+    if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
+    {
+        UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, database);
+    }
+    else
+    {
+        httpResponse.WriteResponse(404, "Not Found", "");
+    }
+        
    
 }

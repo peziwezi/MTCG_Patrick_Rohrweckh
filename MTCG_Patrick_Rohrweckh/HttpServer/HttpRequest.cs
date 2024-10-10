@@ -28,8 +28,6 @@ namespace MTCG_Patrick_Rohrweckh
                 method = words[0];
                 path = words[1];
             }
-                
-
 
             // 1.2 read the HTTP-headers (in HTTP after the first line, until the empy line)
             int content_length = 0; // we need the content_length later, to be able to read the HTTP-content

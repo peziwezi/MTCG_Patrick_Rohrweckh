@@ -25,9 +25,12 @@ namespace MTCG_Patrick_Rohrweckh
                 writerAlsoToConsole.WriteLine();
                 writerAlsoToConsole.WriteLine(content);    // the HTTP-content 
             }
+            else
+            {
+                writerAlsoToConsole.WriteLine();
+            }
             Console.WriteLine("========================================");
         }
         public StreamTracer writerAlsoToConsole;
-
     }
 }
