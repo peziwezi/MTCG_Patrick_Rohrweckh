@@ -11,7 +11,7 @@ namespace MTCG_Patrick_Rohrweckh
 {
     internal class UserEndpoint
     {
-        public UserEndpoint(HttpRequest request, HttpResponse response)
+        public UserEndpoint(HttpRequest request, HttpResponse response, Dictionary<string,string> database)
         {
             httpRequest = request;
             httpResponse = response;
@@ -24,13 +24,26 @@ namespace MTCG_Patrick_Rohrweckh
                     if (httpRequest.content != null)
                     {
                         User user = JsonConvert.DeserializeObject<User>(httpRequest.content);
-                        if (httpRequest.path == "/users" && httpRequest.method == "POST")
+                        if (user != null)
                         {
-                            httpResponse.WriteResponse(201, "");
-                        }
-                        else if (httpRequest.path == "/sessions" && httpRequest.method == "POST")
-                        {
-                            httpResponse.WriteResponse(200, "");
+                            if (httpRequest.path == "/users" && httpRequest.method == "POST")
+                            {
+                                try
+                                {
+                                    database.Add(user.Username, user.Password);
+                                    httpResponse.WriteResponse(201, "");
+                                }
+                                catch (ArgumentException)
+                                {
+                                    httpResponse.WriteResponse(409, "User already exists");
+                                }
+                                
+
+                            }
+                            else if (httpRequest.path == "/sessions" && httpRequest.method == "POST")
+                            {
+                                httpResponse.WriteResponse(200, "");
+                            }
                         }
 
                     }

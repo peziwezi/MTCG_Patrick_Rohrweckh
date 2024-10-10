@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Reflection.PortableExecutable;
 using System.Text;
 
-
+Dictionary<string, string> database = new Dictionary<string, string>();
 // ===== I. Start the HTTP-Server =====
 HttpServer httpServer = new HttpServer(IPAddress.Loopback, 10001);
 httpServer.Start();
@@ -18,6 +18,6 @@ while (true)
     using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
     HttpRequest httpRequest = new HttpRequest(reader);
     HttpResponse httpResponse = new HttpResponse(writer);
-    UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse);
+    UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, database);
    
 }
