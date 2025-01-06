@@ -1,4 +1,6 @@
 ﻿using MTCG_Patrick_Rohrweckh;
+using MTCG_Patrick_Rohrweckh.HttpServer;
+using MTCG_Patrick_Rohrweckh.HttpServer.Endpoints;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection.PortableExecutable;

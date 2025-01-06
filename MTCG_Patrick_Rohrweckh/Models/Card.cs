@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    enum Element 
+    public enum Element 
     { 
         water,
         fire,
         normal
     };
-    internal abstract class Card
+    public abstract class Card
     {
         public Card(string name, int amount, Element type) {
             Name = name;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    internal class Package
+    public class Package
     {
         public List<Card> Packages { get; set; }
         public Package(List<Card> cards) 

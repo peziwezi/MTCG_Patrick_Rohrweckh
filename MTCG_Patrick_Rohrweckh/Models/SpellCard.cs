@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    internal class SpellCard : Card
+    public class SpellCard : Card
     {
         public SpellCard(string name, int amount, Element type) : base(name, amount, type)
         {

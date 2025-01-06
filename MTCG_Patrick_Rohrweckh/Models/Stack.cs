@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    internal class Stack
+    public class Stack
     {
         public List<Card> Cards { get; set; }
         public Stack() 

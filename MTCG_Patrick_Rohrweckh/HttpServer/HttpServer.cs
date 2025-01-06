@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Patrick_Rohrweckh
+namespace MTCG_Patrick_Rohrweckh.HttpServer
 {
     internal class HttpServer
     {

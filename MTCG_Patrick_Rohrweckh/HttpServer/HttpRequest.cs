@@ -9,7 +9,7 @@ using System.Text.Json.Nodes;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
 
-namespace MTCG_Patrick_Rohrweckh
+namespace MTCG_Patrick_Rohrweckh.HttpServer
 {
     internal class HttpRequest
     {

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTCG_Patrick_Rohrweckh", "MTCG_Patrick_Rohrweckh\MTCG_Patrick_Rohrweckh.csproj", "{2B7F1E11-523D-4E92-A412-D2B1A7E5725C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTCG_Patrick_Rohrweckh", "MTCG_Patrick_Rohrweckh\MTCG_Patrick_Rohrweckh.csproj", "{2B7F1E11-523D-4E92-A412-D2B1A7E5725C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTCG_Patrick_Rohrweckh.Tests", "MTCG_Patrick_Rohrweckh.Tests\MTCG_Patrick_Rohrweckh.Tests.csproj", "{DE9F52C2-81F7-4FBB-A88A-7D9FA23642A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2B7F1E11-523D-4E92-A412-D2B1A7E5725C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7F1E11-523D-4E92-A412-D2B1A7E5725C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7F1E11-523D-4E92-A412-D2B1A7E5725C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE9F52C2-81F7-4FBB-A88A-7D9FA23642A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9F52C2-81F7-4FBB-A88A-7D9FA23642A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9F52C2-81F7-4FBB-A88A-7D9FA23642A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9F52C2-81F7-4FBB-A88A-7D9FA23642A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

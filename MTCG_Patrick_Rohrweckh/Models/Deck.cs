@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    internal class Deck
+    public class Deck
     {
         public List<Card> Cards { get; set; }
         public Deck() 

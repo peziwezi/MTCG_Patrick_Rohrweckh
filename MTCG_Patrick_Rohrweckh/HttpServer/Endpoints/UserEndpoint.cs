@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTCG_Patrick_Rohrweckh.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -7,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace MTCG_Patrick_Rohrweckh
+namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
 {
     internal class UserEndpoint
     {
-        public UserEndpoint(HttpRequest request, HttpResponse response, Dictionary<string,string> database)
+        public UserEndpoint(HttpRequest request, HttpResponse response, Dictionary<string, string> database)
         {
             // ----- 2. Do the processing -----
             // .... 
@@ -66,7 +67,7 @@ namespace MTCG_Patrick_Rohrweckh
                             }
                         }
                     }
-                    catch (JsonReaderException) 
+                    catch (JsonReaderException)
                     {
                         response.WriteResponse(400, "Bad Request", "");
                     }
