@@ -14,19 +14,33 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
         {
             // Create:
             Console.WriteLine("Create:");
-            UserRepository.Add(user);
-            Console.WriteLine(user);
+            if(UserRepository.GetByUsername(user.Username) != null)
+            {
+                throw new ArgumentException();
+            }
+            else 
+            {
+                UserRepository.Add(user);
+                Console.WriteLine(user);
+            }
         }
         public void RetrieveAll() {
             // Retrieve:
             Console.WriteLine("Retrieve:");
             UserRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
         }
-        public void RetrieveUser(DataUser user)
+        public DataUser RetrieveUser(User user)
         {
             // Retrieve:
             Console.WriteLine("Retrieve:");
-            Console.WriteLine(UserRepository.GetByUsername(user.Username));
+            if (UserRepository.GetByUsername(user.Username) != null)
+            {
+                return UserRepository.GetByUsername(user.Username);
+            }
+            else
+            { 
+                throw new ArgumentException(); 
+            }
         }
         public void UpdateUser(DataUser user) {
             // Update:

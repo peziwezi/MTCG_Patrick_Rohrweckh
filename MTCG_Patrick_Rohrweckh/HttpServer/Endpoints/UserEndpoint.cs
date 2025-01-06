@@ -7,12 +7,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using MTCG_Patrick_Rohrweckh.Datalogic;
 
 namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
 {
     internal class UserEndpoint
     {
-        public UserEndpoint(HttpRequest request, HttpResponse response, Dictionary<string, string> database)
+        public UserEndpoint(HttpRequest request, HttpResponse response, UserHandler userHandler)
         {
             // ----- 2. Do the processing -----
             // .... 
@@ -31,7 +32,8 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                 {
                                     try
                                     {
-                                        database.Add(user.Username, user.Password);
+                                        DataUser dataUser = new DataUser(user.Username, user.Password, user.ELO, user.Coins);
+                                        userHandler.CreateUser(dataUser);
                                         response.WriteResponse(201, "", "");
                                     }
                                     catch (ArgumentException)
@@ -41,10 +43,10 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                 }
                                 else if (request.path == "/sessions")
                                 {
-                                    string value = "";
-                                    if (database.TryGetValue(user.Username, out value))
+                                    try
                                     {
-                                        if (database[user.Username] == user.Password)
+                                        DataUser dataUser = userHandler.RetrieveUser(user);
+                                        if (dataUser.Password == user.Password)
                                         {
                                             string token = user.Username + "-mtcgToken";
                                             string json = JsonConvert.SerializeObject(token);
@@ -55,7 +57,7 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                             response.WriteResponse(401, "Login failed", "");
                                         }
                                     }
-                                    else
+                                    catch (ArgumentException)
                                     {
                                         response.WriteResponse(401, "Login failed", "");
                                     }

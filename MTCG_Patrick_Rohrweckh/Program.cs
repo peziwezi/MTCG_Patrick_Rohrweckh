@@ -1,4 +1,5 @@
 ﻿using MTCG_Patrick_Rohrweckh;
+using MTCG_Patrick_Rohrweckh.Datalogic;
 using MTCG_Patrick_Rohrweckh.HttpServer;
 using MTCG_Patrick_Rohrweckh.HttpServer.Endpoints;
 using System.Linq;
@@ -9,7 +10,6 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Transactions;
 
-Dictionary<string, string> database = new Dictionary<string, string>();
 // ===== I. Start the HTTP-Server =====
 HttpServer httpServer = new HttpServer(IPAddress.Loopback, 10001);
 httpServer.Start();
@@ -23,9 +23,10 @@ while (true)
     using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
     HttpRequest httpRequest = new HttpRequest(reader);
     HttpResponse httpResponse = new HttpResponse(writer);
+    UserHandler userHandler = new UserHandler();
     if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
     {
-        UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, database);
+        UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, userHandler);
     }
     else if(httpRequest.path == "/packages")
     {

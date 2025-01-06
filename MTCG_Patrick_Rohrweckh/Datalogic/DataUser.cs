@@ -2,6 +2,16 @@
 {
     internal class DataUser
     {
+        public DataUser()
+        {
+        }
+        public DataUser(string username, string password, int elo, int coins) 
+        { 
+            Username = username;
+            Password = password;
+            ELO = elo;
+            Coins = coins;
+        }
         public int? Id { get; set; }
         public string Username { get; set; } = "";
 

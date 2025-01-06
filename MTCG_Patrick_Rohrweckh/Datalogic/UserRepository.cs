@@ -14,7 +14,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
 
-            command.CommandText = "INSERT INTO user (username, password, elo, coins) " +
+            command.CommandText = "INSERT INTO users (username, password, elo, coins) " +
                 "VALUES (@username, @password, @elo, @coins) RETURNING id";
             AddParameterWithValue(command, "username", DbType.String, user.Username);
             AddParameterWithValue(command, "password", DbType.String, user.Password);
@@ -29,7 +29,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, username, password, elo, coins FROM user";
+            command.CommandText = @"SELECT id, username, password, elo, coins FROM users";
 
             using (IDataReader reader = command.ExecuteReader())
                 while (reader.Read())
@@ -54,7 +54,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, username, password, elo, coins FROM person WHERE id=@id";
+            command.CommandText = @"SELECT id, username, password, elo, coins FROM users WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.Int32, id);
 
             using IDataReader reader = command.ExecuteReader();
@@ -80,7 +80,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, username, password, elo, coins FROM person WHERE username=@username";
+            command.CommandText = @"SELECT id, username, password, elo, coins FROM users WHERE username=@username";
             AddParameterWithValue(command, "username", DbType.String, username);
 
             using IDataReader reader = command.ExecuteReader();
@@ -106,7 +106,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = "UPDATE person SET username=@username password=@password, elo=@elo, coins=@coins WHERE id=@id";
+            command.CommandText = "UPDATE users SET username=@username password=@password, elo=@elo, coins=@coins WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.Int32, user.Id);
             AddParameterWithValue(command, "username", DbType.String, user.Username);
             AddParameterWithValue(command, "password", DbType.String, user.Password);
@@ -123,7 +123,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = "DELETE FROM person WHERE id=@id";
+            command.CommandText = "DELETE FROM users WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.Int32, user.Id);
             command.ExecuteNonQuery();
         }
