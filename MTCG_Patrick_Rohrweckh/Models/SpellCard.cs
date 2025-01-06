@@ -8,8 +8,10 @@ namespace MTCG_Patrick_Rohrweckh.Models
 {
     public class SpellCard : Card
     {
-        public SpellCard(string name, int amount, Element type) : base(name, amount, type)
+        public SpellCard(string id, string name, float amount) : base(id, name, amount)
         {
+            CardType = Type.spell;
         }
+        public readonly Type CardType;
     }
 }

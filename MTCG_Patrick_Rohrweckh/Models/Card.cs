@@ -12,14 +12,33 @@ namespace MTCG_Patrick_Rohrweckh.Models
         fire,
         normal
     };
-    public abstract class Card
+    public enum Type
     {
-        public Card(string name, int amount, Element type) {
+        monster,
+        spell
+    }
+    public class Card
+    {
+        public Card(string id, string name, float amount) {
+
+            Id = id;
             Name = name;
             Damage = amount;
-            ElementType = type;
+            if (name.Contains("Fire"))
+            {
+                ElementType = Element.fire;
+            }
+            else if(name.Contains("Water"))
+            {
+                ElementType = Element.water;
+            }
+            else
+            {
+                ElementType = Element.normal;
+            }
         }
-        public readonly int Damage;
+        public readonly string Id;
+        public readonly float Damage;
         public readonly string Name;
         public readonly Element ElementType;
     }

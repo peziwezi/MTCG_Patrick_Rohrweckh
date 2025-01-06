@@ -14,7 +14,16 @@ namespace MTCG_Patrick_Rohrweckh.Models
             Packages = new List<Card>();
             for (int i = 0; i < PackageMax; i++)
             {
-                Packages.Add(cards[i]);
+                Card temp;
+                if (cards[i].Name.Contains("Spell"))
+                {
+                    temp = new SpellCard(cards[i].Id, cards[i].Name, cards[i].Damage);
+                }
+                else
+                {
+                    temp = new MonsterCard(cards[i].Id,cards[i].Name, cards[i].Damage);
+                }
+                Packages.Add(temp);
             }
         }
         public const int PackageMax = 5;

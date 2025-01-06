@@ -24,6 +24,10 @@ while (true)
     {
         UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, database);
     }
+    else if(httpRequest.path == "/packages")
+    {
+        PackagesEndpoint packagesEndpoint = new PackagesEndpoint(httpRequest, httpResponse);
+    }
     else
     {
         httpResponse.WriteResponse(404, "Not Found", "");

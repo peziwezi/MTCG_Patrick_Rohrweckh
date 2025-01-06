@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Nodes;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MTCG_Patrick_Rohrweckh.HttpServer
 {
@@ -45,6 +46,15 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer
                 {
                     content_length = int.Parse(parts[1].Trim());
                 }
+                else if(parts[0] == "Authorization")
+                {
+                    var authorization = parts[1].Split("Bearer");
+                    if (authorization[1].Contains("-mtcgToken"))
+                    {
+                        var fullToken = authorization[1].Split("-");
+                        token = fullToken[0].Trim();
+                    }
+                }
             }
 
             // 1.3 read the body if existing
@@ -68,5 +78,7 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer
         public string? content { get; set; }
         public string? method { get; set; }
         public string? path { get; set; }
+        public string? token { get; set; }
+
     }
 }
