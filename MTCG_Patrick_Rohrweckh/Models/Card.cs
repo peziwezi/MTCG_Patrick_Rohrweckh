@@ -17,7 +17,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
         monster,
         spell
     }
-    public abstract class Card
+    public class Card
     {
         public Card(string id, string name, float amount)
         {
@@ -25,11 +25,11 @@ namespace MTCG_Patrick_Rohrweckh.Models
             Id = id;
             Name = name;
             Damage = amount;
-            if (name.Contains("Fire"))
+            if(name.Contains("Fire"))
             {
                 ElementType = Element.fire;
             }
-            else if (name.Contains("Water"))
+            else if(name.Contains("Water"))
             {
                 ElementType = Element.water;
             }
@@ -37,7 +37,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
             {
                 ElementType = Element.normal;
             }
-            if (name.Contains("Spell"))
+            if(name.Contains("Spell"))
             {
                 CardType = CardType.spell;
             }
