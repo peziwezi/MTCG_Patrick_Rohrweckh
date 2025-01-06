@@ -12,14 +12,15 @@ namespace MTCG_Patrick_Rohrweckh.Models
         fire,
         normal
     };
-    public enum Type
+    public enum CardType
     {
         monster,
         spell
     }
-    public class Card
+    public abstract class Card
     {
-        public Card(string id, string name, float amount) {
+        public Card(string id, string name, float amount)
+        {
 
             Id = id;
             Name = name;
@@ -28,7 +29,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
             {
                 ElementType = Element.fire;
             }
-            else if(name.Contains("Water"))
+            else if (name.Contains("Water"))
             {
                 ElementType = Element.water;
             }
@@ -36,10 +37,19 @@ namespace MTCG_Patrick_Rohrweckh.Models
             {
                 ElementType = Element.normal;
             }
+            if (name.Contains("Spell"))
+            {
+                CardType = CardType.spell;
+            }
+            else
+            {
+                CardType = CardType.monster;
+            }
         }
         public readonly string Id;
         public readonly float Damage;
         public readonly string Name;
+        public readonly CardType CardType;
         public readonly Element ElementType;
     }
 }

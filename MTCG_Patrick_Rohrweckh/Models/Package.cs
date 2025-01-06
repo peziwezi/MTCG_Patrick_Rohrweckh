@@ -15,7 +15,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
             for (int i = 0; i < PackageMax; i++)
             {
                 Card temp;
-                if (cards[i].Name.Contains("Spell"))
+                if (cards[i].CardType == CardType.spell)
                 {
                     temp = new SpellCard(cards[i].Id, cards[i].Name, cards[i].Damage);
                 }

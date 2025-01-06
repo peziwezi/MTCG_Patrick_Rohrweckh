@@ -21,7 +21,6 @@ namespace MTCG_Patrick_Rohrweckh.Models
     {
         public MonsterCard(string id, string name, float amount) : base(id, name, amount)
         {
-            CardType = Type.monster;
             if(Name.Contains("Goblin"))
             {
                 MonsterType = Monster.Goblin;
@@ -55,7 +54,6 @@ namespace MTCG_Patrick_Rohrweckh.Models
                 MonsterType = Monster.Else;
             }
         }
-        public readonly Type CardType;
         public readonly Monster MonsterType;
 
     }
