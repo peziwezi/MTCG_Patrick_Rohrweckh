@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Models
 {
-    internal class User
+    public class User
     {
         public User(string username, string password)
         {

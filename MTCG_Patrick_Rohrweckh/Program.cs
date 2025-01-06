@@ -14,32 +14,33 @@ using System.Transactions;
 HttpServer httpServer = new HttpServer(IPAddress.Loopback, 10001);
 httpServer.Start();
 
-
 while (true)
 {
-    // ----- 0. Accept the TCP-Client and create the reader and writer -----
-    TcpClient clientSocket = httpServer.AcceptTcpClient();
-    using StreamReader reader = new StreamReader(clientSocket.GetStream());
-    using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
-    HttpRequest httpRequest = new HttpRequest(reader);
-    HttpResponse httpResponse = new HttpResponse(writer);
-    UserHandler userHandler = new UserHandler();
-    if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
+    ThreadPool.QueueUserWorkItem(delegate
     {
-        UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, userHandler);
-    }
-    else if(httpRequest.path == "/packages")
-    {
-        PackagesEndpoint packagesEndpoint = new PackagesEndpoint(httpRequest, httpResponse);
-    }
-    else if(httpRequest.path == ("/transactions/packages"))
-    {
-        TransactionEndpoint transactionEndpoint = new TransactionEndpoint(httpRequest, httpResponse); 
-    }
-    else
-    {
-        httpResponse.WriteResponse(404, "Not Found", "");
-    }
-        
-   
+        // ----- 0. Accept the TCP-Client and create the reader and writer -----
+        TcpClient clientSocket = httpServer.AcceptTcpClient();
+        using StreamReader reader = new StreamReader(clientSocket.GetStream());
+        using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
+        HttpRequest httpRequest = new HttpRequest(reader);
+        HttpResponse httpResponse = new HttpResponse(writer);
+        UserHandler userHandler = new UserHandler();
+        if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
+        {
+            UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, userHandler);
+        }
+        else if (httpRequest.path == "/packages")
+        {
+            PackagesEndpoint packagesEndpoint = new PackagesEndpoint(httpRequest, httpResponse);
+        }
+        else if (httpRequest.path == ("/transactions/packages"))
+        {
+            TransactionEndpoint transactionEndpoint = new TransactionEndpoint(httpRequest, httpResponse);
+        }
+        else
+        {
+            httpResponse.WriteResponse(404, "Not Found", "");
+        }
+
+    });
 }

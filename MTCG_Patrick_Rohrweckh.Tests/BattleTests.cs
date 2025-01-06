@@ -103,5 +103,65 @@ namespace MTCG_Patrick_Rohrweckh.Tests
             Assert.That(Equals(winner, draw));
             Assert.That(winner, Is.EqualTo(draw));
         }
+        [Test]
+        public void Compare_Wizzard_and_Ork_Return_Winner()
+        {
+            Assert.Pass();
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new MonsterCard("1", "Wizzard", 5);
+            Card card2 = new MonsterCard("2", "Ork", 10);
+
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card1));
+            Assert.That(winner, Is.EqualTo(card1));
+        }
+        [Test]
+        public void Compare_Goblin_and_Dragon_Return_Winner()
+        {
+            Assert.Pass();
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new MonsterCard("1", "Goblin", 15);
+            Card card2 = new MonsterCard("2", "Dragon", 5);
+
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card2));
+            Assert.That(winner, Is.EqualTo(card2));
+        }
+        [Test]
+        public void Compare_Kraken_and_WaterSpell_Return_Winner()
+        {
+            Assert.Pass();
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new MonsterCard("1", "Kraken", 5);
+            Card card2 = new SpellCard("2", "WaterSpell", 10);
+
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card1));
+            Assert.That(winner, Is.EqualTo(card1));
+        }
+        [Test]
+        public void Compare_FireSpell_and_WaterSpell_Return_Winner()
+        {
+            Assert.Pass();
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new SpellCard("1", "FireSpell", 10);
+            Card card2 = new SpellCard("2", "WaterSpell", 5);
+
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card2));
+            Assert.That(winner, Is.EqualTo(card2));
+        }
     }
 }

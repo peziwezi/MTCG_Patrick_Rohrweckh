@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,35 @@ namespace MTCG_Patrick_Rohrweckh.Businesslogic
     }
     public class Battle
     {
+        public Battle(Deck playerDeck1, Deck playerDeck2)
+        {
+            Random random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                
+                Card card1 = playerDeck1.Cards[random.Next(playerDeck1.Cards.Count)];
+                Card card2 = playerDeck2.Cards[random.Next(playerDeck2.Cards.Count)];
+                Card winner = Fight(card1, card2);
+                if(card1 == winner)
+                {
+                    playerDeck2.Cards.Remove(card2);
+                    playerDeck1.Cards.Add(card2);
+                }
+                else if(card2 == winner) 
+                {
+                    playerDeck1.Cards.Remove(card1);
+                    playerDeck2.Cards.Add(card1);
+                }
+                if(playerDeck1.Cards.Count == 0)
+                {
+                    break;
+                }
+                else if(playerDeck2.Cards.Count == 0)
+                {
+                    break;
+                }
+            }
+        }
         public Battle()
         {
 
