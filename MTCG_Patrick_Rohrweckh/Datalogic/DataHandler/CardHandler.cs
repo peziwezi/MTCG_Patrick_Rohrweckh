@@ -1,5 +1,6 @@
 ﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
 using MTCG_Patrick_Rohrweckh.Datalogic.DataRepository;
+using MTCG_Patrick_Rohrweckh.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,17 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             // Retrieve:
             Console.WriteLine("Retrieve:");
             CardRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
+        }
+        public DataCard RetrieveCardbyId(string? id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentException("Id does not exist");
+            }
+            else
+            {
+                return CardRepository.GetById(id);
+            }
         }
         public List<DataCard> GetPackageById(int? packid)
         {

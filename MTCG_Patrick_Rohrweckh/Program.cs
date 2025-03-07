@@ -37,6 +37,10 @@ while (true)
         {
             TransactionEndpoint transactionEndpoint = new TransactionEndpoint(httpRequest, httpResponse, dataHandler);
         }
+        else if(httpRequest.path == ("/cards"))
+        {
+            CardEndpoint cardEndpoint = new CardEndpoint(httpRequest, httpResponse, dataHandler);
+        }
         else
         {
             httpResponse.WriteResponse(404, "Not Found", "");

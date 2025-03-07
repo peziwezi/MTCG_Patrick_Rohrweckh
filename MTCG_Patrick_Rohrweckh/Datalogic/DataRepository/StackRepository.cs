@@ -56,7 +56,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT userid, cardid, stacktype FROM stacks WHERE userid=@userid AND cardid=@cardid";
+            command.CommandText = @"SELECT userid, cardid, stacktype FROM stack WHERE userid=@userid AND cardid=@cardid";
             AddParameterWithValue(command, "userid", DbType.Int32, userid ?? (object)DBNull.Value);
             AddParameterWithValue(command, "cardid", DbType.String, cardid ?? (object)DBNull.Value);
 
