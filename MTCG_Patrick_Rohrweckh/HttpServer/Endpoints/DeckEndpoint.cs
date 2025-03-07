@@ -62,8 +62,8 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                 for(int i = 0; i < deck.DeckMax; i++)
                                 {
                                     if(dataHandler.stackHandler.CountDeck(dataUser.Id) < 4)
-                                    { 
-                                        DataStack stack = new DataStack(dataUser.Id, deck.Cards[i].Id, "Deck");
+                                    {
+                                        DataStack stack = dataHandler.stackHandler.RetrieveStack(dataUser.Id, deck.Cards[i].Id);
                                         dataHandler.stackHandler.UpdateStack(stack);
                                     }
                                     else

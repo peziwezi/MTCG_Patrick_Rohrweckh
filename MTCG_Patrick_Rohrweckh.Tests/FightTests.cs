@@ -155,5 +155,36 @@ namespace MTCG_Patrick_Rohrweckh.Tests
             Assert.That(Equals(winner, card2));
             Assert.That(winner, Is.EqualTo(card2));
         }
+        [Test]
+        public void Compare_RegularSpell_and_WaterSpell_Return_Winner()
+        {
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new SpellCard("1", "RegularSpell", 5);
+            Card card2 = new SpellCard("2", "WaterSpell", 10);
+            Assert.That(Equals(card1.ElementType, Element.normal));
+            Assert.That(Equals(card2.ElementType, Element.water));
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card1));
+            Assert.That(winner, Is.EqualTo(card1));
+        }
+        [Test]
+        public void Compare_RegularSpell_and_FireSpell_Return_Winner()
+        {
+            //Arrange
+            Battle battle = new Battle();
+            Card card1 = new SpellCard("1", "RegularSpell", 10);
+            Card card2 = new SpellCard("2", "FireSpell", 5);
+            Assert.That(Equals(card1.ElementType, Element.normal));
+            Assert.That(Equals(card2.ElementType, Element.fire));
+            //Act
+            Card winner = battle.Fight(card1, card2);
+            //Assert
+            Assert.That(Equals(winner, card2));
+            Assert.That(winner, Is.EqualTo(card2));
+        }
+
     }
 }
