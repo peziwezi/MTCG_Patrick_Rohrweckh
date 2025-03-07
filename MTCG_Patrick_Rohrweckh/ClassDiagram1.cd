@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataHandler.CardHandler">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAiCAAAAAQAA=</HashCode>
+      <FileName>Datalogic\DataHandler\CardHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataHandler.DataHandler">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACCAA=</HashCode>
+      <FileName>Datalogic\DataHandler\DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataHandler.PackageHandler">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAIgAAAAAAAAAAAAAAAAAABAAgAQAAABAAA=</HashCode>
+      <FileName>Datalogic\DataHandler\PackageHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataHandler.StackHandler">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAIAAAAAACAEAAAAAiAAgAIACAA=</HashCode>
+      <FileName>Datalogic\DataHandler\StackHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataHandler.UserHandler">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQAAAAgEAAAAAAAAAQAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Datalogic\DataHandler\UserHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataModel.DataCard">
+    <Position X="6.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAACAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datalogic\DataModel\DataCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataModel.DataPackage">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datalogic\DataModel\DataPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataModel.DataStack">
+    <Position X="4.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAAAAAAwAAAA=</HashCode>
+      <FileName>Datalogic\DataModel\DataStack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Datalogic.DataModel.DataUser">
+    <Position X="8.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACAAAAAAEAQAACAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Datalogic\DataModel\DataUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.BattlesEndpoint">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\BattlesEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.CardEndpoint">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\CardEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.DeckEndpoint">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\DeckEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.PackagesEndpoint">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\PackagesEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.TransactionEndpoint">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\TransactionEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.Endpoints.UserEndpoint">
+    <Position X="2.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\Endpoints\UserEndpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.HttpRequest">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAACAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\HttpRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.HttpResponse">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\HttpResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.HttpServer.HttpServer">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\HttpServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StreamTracer">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HttpServer\SteamTracer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Card">
+    <Position X="2" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBACAAAAAAAAAAAAAAAQAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Card.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Deck">
+    <Position X="4.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Deck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.MonsterCard">
+    <Position X="0.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MonsterCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Package">
+    <Position X="8" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Package.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.SpellCard">
+    <Position X="3.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SpellCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.Stack">
+    <Position X="4.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Stack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTCG_Patrick_Rohrweckh.Models.User">
+    <Position X="6" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAQAACAAAgAAAAAACAABAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="MTCG_Patrick_Rohrweckh.Models.Element">
+    <Position X="7" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAJAAAAAAAAAA=</HashCode>
+      <FileName>Models\Card.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MTCG_Patrick_Rohrweckh.Models.CardType">
+    <Position X="7" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAIAAAA=</HashCode>
+      <FileName>Models\Card.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MTCG_Patrick_Rohrweckh.Models.Monster">
+    <Position X="5.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAEAAAAABgAAAAAAAAAIAAAgAAAIAAAgAAA=</HashCode>
+      <FileName>Models\MonsterCard.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
