@@ -55,6 +55,12 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
                 return StackRepository.GetByIds(userid, cardid);
             }
         }
+        public List<DataStack> RetrieveDeck(int? userid)
+        {
+            // Retrieve:
+            Console.WriteLine("Retrieve:");
+            return StackRepository.GetDeckById(userid).ToList();
+        }
         public void UpdateStack(DataStack stack)
         {
             // Update:

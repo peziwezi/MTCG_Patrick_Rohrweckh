@@ -41,6 +41,10 @@ while (true)
         {
             CardEndpoint cardEndpoint = new CardEndpoint(httpRequest, httpResponse, dataHandler);
         }
+        else if (httpRequest.path == ("/deck"))
+        {
+            DeckEndpoint deckEndpoint = new DeckEndpoint(httpRequest, httpResponse, dataHandler);
+        }
         else
         {
             httpResponse.WriteResponse(404, "Not Found", "");
