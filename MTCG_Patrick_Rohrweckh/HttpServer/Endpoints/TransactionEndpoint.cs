@@ -58,6 +58,10 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                             {
                                 response.WriteResponse(409, "No packages available", "");
                             }
+                            catch (Npgsql.NpgsqlException)
+                            {
+                                response.WriteResponse(503, "Unable to connect to database ", "");
+                            }
                         }
                         else
                         {

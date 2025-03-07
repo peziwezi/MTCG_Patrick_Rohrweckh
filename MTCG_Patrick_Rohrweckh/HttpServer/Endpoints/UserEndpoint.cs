@@ -41,6 +41,10 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                     {
                                         response.WriteResponse(409, "User already exists", "");
                                     }
+                                    catch (Npgsql.NpgsqlException)
+                                    {
+                                        response.WriteResponse(503, "Unable to connect to database ", "");
+                                    }
                                 }
                                 else if (request.path == "/sessions")
                                 {
@@ -61,6 +65,10 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                     catch (ArgumentException)
                                     {
                                         response.WriteResponse(401, "Login failed", "");
+                                    }
+                                    catch (Npgsql.NpgsqlException)
+                                    {
+                                        response.WriteResponse(503, "Unable to connect to database ", "");
                                     }
                                 }
                             }
