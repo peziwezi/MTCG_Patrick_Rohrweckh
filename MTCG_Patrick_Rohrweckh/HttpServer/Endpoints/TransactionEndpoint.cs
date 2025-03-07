@@ -40,13 +40,14 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                     else
                                     {
                                         DataPackage dataPackage = dataHandler.packageHandler.RetrievePackage(id);
-                                        List<string> CardIds = [dataPackage.CardId1, dataPackage.CardId2, dataPackage.CardId3, dataPackage.CardId4, dataPackage.CardId5];
+                                        List<DataCard> cards = dataHandler.cardHandler.GetPackageById(dataPackage.Id);
                                         for (int i = 0; i < 5; i++)
                                         {
-                                           DataStack temp = new DataStack(dataUser.Id, CardIds[i], "Stack");
+                                           DataStack temp = new DataStack(dataUser.Id, cards[i].Id, "Stack");
                                             dataHandler.stackHandler.CreateStack(temp);
                                         }
-                                        dataHandler.packageHandler.DeletePackage(dataPackage);
+                                        dataPackage.Status = "Sold";
+                                        dataHandler.packageHandler.UpdatePackage(dataPackage);
                                         dataUser.Coins -= 5;
                                         dataHandler.userHandler.UpdateUser(dataUser);
                                         response.WriteResponse(201, "", "");

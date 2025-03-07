@@ -1,4 +1,5 @@
 ﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
+using MTCG_Patrick_Rohrweckh.Models;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,12 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
 
-            command.CommandText = "INSERT INTO cards (id, name, damage) " +
-                "VALUES (@id, @name, @damage)";
+            command.CommandText = "INSERT INTO cards (id, name, damage, packid) " +
+                "VALUES (@id, @name, @damage, @packid)";
             AddParameterWithValue(command, "id", DbType.String, card.Id ?? (object)DBNull.Value);
             AddParameterWithValue(command, "name", DbType.String, card.Name ?? (object)DBNull.Value);
             AddParameterWithValue(command, "damage", DbType.Double, card.Damage);
+            AddParameterWithValue(command, "packid", DbType.Int32, card.Packid ?? (object)DBNull.Value);
             command.ExecuteNonQuery();
         }
         internal IEnumerable<DataCard> GetAll()
@@ -32,7 +34,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, name, damage FROM cards";
+            command.CommandText = @"SELECT id, name, damage, packid FROM cards";
 
             using (IDataReader reader = command.ExecuteReader())
                 while (reader.Read())
@@ -41,7 +43,31 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                     {
                         Id = reader.GetString(0),
                         Name = reader.GetString(1),
-                        Damage = reader.GetFloat(2)
+                        Damage = reader.GetFloat(2),
+                        Packid = reader.GetInt32(3),
+                    });
+                }
+            return result;
+        }
+
+        internal IEnumerable<DataCard> GetPackage(int? packid)
+        {
+            List<DataCard> result = [];
+
+            using IDbConnection connection = new NpgsqlConnection(connectionString);
+            using IDbCommand command = connection.CreateCommand();
+            connection.Open();
+            command.CommandText = @"SELECT id, name, damage, packid FROM cards where packid=@packid";
+            AddParameterWithValue(command, "packid", DbType.Int32, packid ?? (object)DBNull.Value);
+            using (IDataReader reader = command.ExecuteReader())
+                while (reader.Read())
+                {
+                    result.Add(new DataCard()
+                    {
+                        Id = reader.GetString(0),
+                        Name = reader.GetString(1),
+                        Damage = reader.GetFloat(2),
+                        Packid = reader.GetInt32(3),
                     });
                 }
             return result;
@@ -55,7 +81,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT  id, name, damage FROM cards WHERE id=@id";
+            command.CommandText = @"SELECT  id, name, damage, packid FROM cards WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.String, id);
 
             using IDataReader reader = command.ExecuteReader();
@@ -63,9 +89,10 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             {
                 return new DataCard()
                 {
-                    Id = reader.GetString(1),
+                    Id = reader.GetString(0),
                     Name = reader.GetString(1),
-                    Damage = reader.GetFloat(24),
+                    Damage = reader.GetFloat(2),
+                    Packid = reader.GetInt32(3),
                 };
             }
             return null;

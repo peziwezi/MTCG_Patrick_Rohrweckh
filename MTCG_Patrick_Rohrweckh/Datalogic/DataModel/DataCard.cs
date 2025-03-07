@@ -13,15 +13,17 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataModel
         {
 
         }
-        public DataCard(string? id, string name, double damage)
+        public DataCard(string? id, string name, double damage, int? packid)
         {
             Id = id;
             Name = name;
             Damage = damage;
+            Packid = packid;
         }
         public string? Id { get; set; }
         public string Name { get; set; } = "";
         public double Damage { get; set; }
+        public int? Packid { get; set; }
         public override string ToString()
         {
             return $"Card: Id={Id}, Name={Name}, Damage={Damage}";

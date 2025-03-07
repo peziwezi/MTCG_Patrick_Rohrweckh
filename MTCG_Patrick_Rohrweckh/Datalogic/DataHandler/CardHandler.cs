@@ -36,6 +36,12 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             Console.WriteLine("Retrieve:");
             CardRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
         }
+        public List<DataCard> GetPackageById(int? packid)
+        {
+            // Retrieve:
+            Console.WriteLine("Retrieve:");
+            return CardRepository.GetPackage(packid).ToList();
+        }
         public void DeleteCard(DataCard card)
         {
             // Delete:

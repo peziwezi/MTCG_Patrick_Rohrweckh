@@ -17,19 +17,20 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
                 "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
         }
         public PackageRepository PackageRepository;
-        public void CreatePackage(List<DataCard> datacards)
+        public int? CreatePackage(string status)
         {
             // Create:
             Console.WriteLine("Create:");
-            if (datacards == null)
+            if (status  == null)
             {
                 throw new ArgumentException("List is empty");
             }
             else
             {
-                DataPackage package = new DataPackage(datacards[0].Id, datacards[1].Id, datacards[2].Id, datacards[3].Id, datacards[4].Id);
-                PackageRepository.Add(package);
+                DataPackage package = new DataPackage(status);
+                int? id = PackageRepository.Add(package);
                 Console.WriteLine(package);
+                return id;
             }
         }
         public DataPackage RetrievePackage(int? id)
@@ -50,6 +51,13 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             // Retrieve:
             Console.WriteLine("Retrieve:");
             PackageRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
+        }
+        public void UpdatePackage(DataPackage package)
+        {
+            // Update:
+            Console.WriteLine("Update:");
+            PackageRepository.Update(package);
+            Console.WriteLine(PackageRepository.GetById(package.Id));
         }
         public int ChoosePackage()
         {

@@ -42,7 +42,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             Console.WriteLine("Retrieve:");
             StackRepository.GetAllById(userid).ToList().ForEach(p => Console.WriteLine(p));
         }
-        public DataStack RetrieveUser(int userid, string cardid)
+        public DataStack RetrieveStack(int userid, string cardid)
         {
             // Retrieve:
             Console.WriteLine("Retrieve:");

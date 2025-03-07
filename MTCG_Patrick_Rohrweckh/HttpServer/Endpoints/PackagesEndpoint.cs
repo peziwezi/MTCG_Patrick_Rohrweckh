@@ -29,15 +29,13 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                 {
                                     try
                                     {
+                                        int? id = dataHandler.packageHandler.CreatePackage("Available");
                                         Package package = new Package(cards);
-                                        List<DataCard> dataCards = new List<DataCard>();
                                         for (int i = 0; i < package.PackageMax; i++)
                                         {
-                                            DataCard temp = new DataCard(package.Packages[i].Id, package.Packages[i].Name, package.Packages[i].Damage);
+                                            DataCard temp = new DataCard(package.Packages[i].Id, package.Packages[i].Name, package.Packages[i].Damage, id);
                                             dataHandler.cardHandler.CreateCard(temp);
-                                            dataCards.Add(temp);
                                         }
-                                        dataHandler.packageHandler.CreatePackage(dataCards);
                                         response.WriteResponse(201, "", "");
                                     }
                                     catch (ArgumentException)

@@ -13,21 +13,18 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
     class PackageRepository(string connectionString)
     {
         private readonly string connectionString = connectionString;
-        internal void Add(DataPackage package)
+        internal int? Add(DataPackage package)
         {
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
 
-            command.CommandText = "INSERT INTO packages (cardid1, cardid2, cardid3, cardid4, cardid5) " +
-                "VALUES (@cardid1, @cardid2, @cardid3, @cardid4, @cardid5) RETURNING id";
-            AddParameterWithValue(command, "cardid1", DbType.String, package.CardId1 ?? (object)DBNull.Value);
-            AddParameterWithValue(command, "cardid2", DbType.String, package.CardId2 ?? (object)DBNull.Value);
-            AddParameterWithValue(command, "cardid3", DbType.String, package.CardId3 ?? (object)DBNull.Value);
-            AddParameterWithValue(command, "cardid4", DbType.String, package.CardId4 ?? (object)DBNull.Value);
-            AddParameterWithValue(command, "cardid5", DbType.String, package.CardId5 ?? (object)DBNull.Value);
+            command.CommandText = "INSERT INTO packages (status) " +
+                "VALUES (@status) RETURNING id";
+            AddParameterWithValue(command, "status", DbType.String, package.Status ?? (object)DBNull.Value);
             object? result = command.ExecuteScalar();
             package.Id = result != null ? Convert.ToInt32(result) : 0;
+            return package.Id;
         }
         internal int ReturnId()
         {
@@ -35,7 +32,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
 
-            command.CommandText = @"SELECT id FROM packages";
+            command.CommandText = @"SELECT id FROM packages where status = 'Available'";
             using (IDataReader reader = command.ExecuteReader())
                 while (reader.Read())
                 {
@@ -50,7 +47,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, cardid1, cardid2, cardid3, cardid4, cardid5 FROM packages";
+            command.CommandText = @"SELECT id, status FROM packages";
 
             using (IDataReader reader = command.ExecuteReader())
                 while (reader.Read())
@@ -58,11 +55,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                     result.Add(new DataPackage()
                     {
                         Id = reader.GetInt32(0),
-                        CardId1 = reader.GetString(1),
-                        CardId2 = reader.GetString(2),
-                        CardId3 = reader.GetString(3),
-                        CardId4 = reader.GetString(4),
-                        CardId5 = reader.GetString(5),
+                        Status = reader.GetString(1),
                     });
                 }
             return result;
@@ -76,7 +69,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = @"SELECT id, cardid1, cardid2, cardid3, cardid4, cardid5 FROM packages WHERE id=@id";
+            command.CommandText = @"SELECT id, status FROM packages WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.Int32, id);
 
             using IDataReader reader = command.ExecuteReader();
@@ -85,15 +78,25 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                 return new DataPackage()
                 {
                     Id = reader.GetInt32(0),
-                    CardId1 = reader.GetString(1),
-                    CardId2 = reader.GetString(2),
-                    CardId3 = reader.GetString(3),
-                    CardId4 = reader.GetString(4),
-                    CardId5 = reader.GetString(5),
+                    Status = reader.GetString(1),
                 };
             }
             return null;
         }
+        internal void Update(DataPackage package)
+        {
+            if (package.Id == null)
+                throw new ArgumentException("Id must not be null");
+
+            using IDbConnection connection = new NpgsqlConnection(connectionString);
+            using IDbCommand command = connection.CreateCommand();
+            connection.Open();
+            command.CommandText = "UPDATE packages SET status=@status WHERE id=@id";
+            AddParameterWithValue(command, "id", DbType.Int32, package.Id);
+            AddParameterWithValue(command, "status", DbType.String, package.Status ?? (object)DBNull.Value);
+            command.ExecuteNonQuery();
+        }
+
 
         internal void Delete(DataPackage package)
         {
