@@ -1,8 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
 using Npgsql;
 using System;
 using System.Data;
-namespace MTCG_Patrick_Rohrweckh.Datalogic
+namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
 {
     internal class UserRepository(string connectionString)
     {
@@ -16,11 +17,12 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
 
             command.CommandText = "INSERT INTO users (username, password, elo, coins) " +
                 "VALUES (@username, @password, @elo, @coins) RETURNING id";
-            AddParameterWithValue(command, "username", DbType.String, user.Username);
-            AddParameterWithValue(command, "password", DbType.String, user.Password);
+            AddParameterWithValue(command, "username", DbType.String, user.Username ?? (object)DBNull.Value);
+            AddParameterWithValue(command, "password", DbType.String, user.Password ?? (object)DBNull.Value);
             AddParameterWithValue(command, "elo", DbType.Int32, user.ELO);
             AddParameterWithValue(command, "coins", DbType.Int32, user.Coins);
-            user.Id = (int)(command.ExecuteScalar() ?? 0);
+            object? result = command.ExecuteScalar();
+            user.Id = result != null ? Convert.ToInt32(result) : 0;
         }
         internal IEnumerable<DataUser> GetAll()
         {
@@ -106,7 +108,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             using IDbConnection connection = new NpgsqlConnection(connectionString);
             using IDbCommand command = connection.CreateCommand();
             connection.Open();
-            command.CommandText = "UPDATE users SET username=@username password=@password, elo=@elo, coins=@coins WHERE id=@id";
+            command.CommandText = "UPDATE users SET username=@username, password=@password, elo=@elo, coins=@coins WHERE id=@id";
             AddParameterWithValue(command, "id", DbType.Int32, user.Id);
             AddParameterWithValue(command, "username", DbType.String, user.Username);
             AddParameterWithValue(command, "password", DbType.String, user.Password);

@@ -1,5 +1,5 @@
 ﻿using MTCG_Patrick_Rohrweckh;
-using MTCG_Patrick_Rohrweckh.Datalogic;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataHandler;
 using MTCG_Patrick_Rohrweckh.HttpServer;
 using MTCG_Patrick_Rohrweckh.HttpServer.Endpoints;
 using System.Linq;
@@ -24,18 +24,18 @@ while (true)
         using StreamWriter writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
         HttpRequest httpRequest = new HttpRequest(reader);
         HttpResponse httpResponse = new HttpResponse(writer);
-        UserHandler userHandler = new UserHandler();
+        DataHandler dataHandler = new DataHandler();
         if (httpRequest.path == "/users" || httpRequest.path == "/sessions")
         {
-            UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, userHandler);
+            UserEndpoint userEndpoint = new UserEndpoint(httpRequest, httpResponse, dataHandler);
         }
         else if (httpRequest.path == "/packages")
         {
-            PackagesEndpoint packagesEndpoint = new PackagesEndpoint(httpRequest, httpResponse);
+            PackagesEndpoint packagesEndpoint = new PackagesEndpoint(httpRequest, httpResponse, dataHandler);
         }
         else if (httpRequest.path == ("/transactions/packages"))
         {
-            TransactionEndpoint transactionEndpoint = new TransactionEndpoint(httpRequest, httpResponse);
+            TransactionEndpoint transactionEndpoint = new TransactionEndpoint(httpRequest, httpResponse, dataHandler);
         }
         else
         {

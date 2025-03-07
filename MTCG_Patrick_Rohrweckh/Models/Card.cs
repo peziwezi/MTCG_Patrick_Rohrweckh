@@ -19,12 +19,12 @@ namespace MTCG_Patrick_Rohrweckh.Models
     }
     public class Card
     {
-        public Card(string id, string name, float amount)
+        public Card(string id, string name, double damage)
         {
 
             Id = id;
             Name = name;
-            Damage = amount;
+            Damage = damage;
             if(name.Contains("Fire"))
             {
                 ElementType = Element.fire;
@@ -47,7 +47,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
             }
         }
         public readonly string Id;
-        public readonly float Damage;
+        public readonly double Damage;
         public readonly string Name;
         public readonly CardType CardType;
         public readonly Element ElementType;

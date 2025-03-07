@@ -26,6 +26,6 @@ namespace MTCG_Patrick_Rohrweckh.Models
                 Packages.Add(temp);
             }
         }
-        public const int PackageMax = 5;
+        public readonly int PackageMax = 5;
     }
 }

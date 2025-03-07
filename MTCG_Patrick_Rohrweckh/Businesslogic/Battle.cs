@@ -66,8 +66,8 @@ namespace MTCG_Patrick_Rohrweckh.Businesslogic
         public Result CalculateDamage(Card card1, Card card2)
         {
             Result winner;
-            float damage1 = card1.Damage;
-            float damage2 = card2.Damage;
+            double damage1 = card1.Damage;
+            double damage2 = card2.Damage;
             if(!(card1.CardType == CardType.monster && card2.CardType == CardType.monster))
             {
                 if (card1.CardType == CardType.monster)

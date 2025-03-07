@@ -8,7 +8,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
 {
     public class SpellCard : Card
     {
-        public SpellCard(string id, string name, float amount) : base(id, name, amount)
+        public SpellCard(string id, string name, double damage) : base(id, name, damage)
         {
         }
     }

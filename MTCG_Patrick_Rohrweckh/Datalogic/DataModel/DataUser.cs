@@ -1,4 +1,4 @@
-﻿namespace MTCG_Patrick_Rohrweckh.Datalogic
+﻿namespace MTCG_Patrick_Rohrweckh.Datalogic.DataModel
 {
     internal class DataUser
     {

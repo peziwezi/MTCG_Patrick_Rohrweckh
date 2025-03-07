@@ -1,6 +1,8 @@
-﻿using MTCG_Patrick_Rohrweckh.Models;
+﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataRepository;
+using MTCG_Patrick_Rohrweckh.Models;
 
-namespace MTCG_Patrick_Rohrweckh.Datalogic
+namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
 {
     internal class UserHandler
     {
@@ -16,7 +18,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             Console.WriteLine("Create:");
             if(UserRepository.GetByUsername(user.Username) != null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("User already exists");
             }
             else 
             {
@@ -29,17 +31,17 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic
             Console.WriteLine("Retrieve:");
             UserRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
         }
-        public DataUser RetrieveUser(User user)
+        public DataUser RetrieveUser(string username)
         {
             // Retrieve:
             Console.WriteLine("Retrieve:");
-            if (UserRepository.GetByUsername(user.Username) != null)
+            if (UserRepository.GetByUsername(username) != null)
             {
-                return UserRepository.GetByUsername(user.Username);
+                return UserRepository.GetByUsername(username);
             }
             else
             { 
-                throw new ArgumentException(); 
+                throw new ArgumentException("User already exists"); 
             }
         }
         public void UpdateUser(DataUser user) {

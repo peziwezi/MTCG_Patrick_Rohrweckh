@@ -1,4 +1,6 @@
-﻿using MTCG_Patrick_Rohrweckh.Models;
+﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataHandler;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
+using MTCG_Patrick_Rohrweckh.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
 {
     internal class TransactionEndpoint
     {
-        public TransactionEndpoint(HttpRequest request, HttpResponse response) 
+        public TransactionEndpoint(HttpRequest request, HttpResponse response, DataHandler dataHandler)
         {
 
             if (request != null)
@@ -19,11 +21,21 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                 {
                     if (request.method == "POST")
                     {
-                        if (request.token != "")
+                        if (request.token != "" && request.token != null)
                         {
                             try
                             {
-                                response.WriteResponse(201, "", "");
+                                DataUser dataUser = dataHandler.userHandler.RetrieveUser(request.token);
+                                if (dataUser.Coins <= 0)
+                                {
+                                    response.WriteResponse(412, "Not enough money", "");
+                                }
+                                else
+                                {
+                                    dataUser.Coins -= 5;
+                                    dataHandler.userHandler.UpdateUser(dataUser);
+                                    response.WriteResponse(201, "", "");
+                                }
                             }
                             catch (ArgumentException)
                             {

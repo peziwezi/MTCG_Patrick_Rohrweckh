@@ -7,13 +7,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using MTCG_Patrick_Rohrweckh.Datalogic;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataHandler;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
 
 namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
 {
     internal class UserEndpoint
     {
-        public UserEndpoint(HttpRequest request, HttpResponse response, UserHandler userHandler)
+        public UserEndpoint(HttpRequest request, HttpResponse response, DataHandler dataHandler)
         {
             // ----- 2. Do the processing -----
             // .... 
@@ -33,7 +34,7 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                     try
                                     {
                                         DataUser dataUser = new DataUser(user.Username, user.Password, user.ELO, user.Coins);
-                                        userHandler.CreateUser(dataUser);
+                                        dataHandler.userHandler.CreateUser(dataUser);
                                         response.WriteResponse(201, "", "");
                                     }
                                     catch (ArgumentException)
@@ -45,7 +46,7 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                                 {
                                     try
                                     {
-                                        DataUser dataUser = userHandler.RetrieveUser(user);
+                                        DataUser dataUser = dataHandler.userHandler.RetrieveUser(user.Username);
                                         if (dataUser.Password == user.Password)
                                         {
                                             string token = user.Username + "-mtcgToken";

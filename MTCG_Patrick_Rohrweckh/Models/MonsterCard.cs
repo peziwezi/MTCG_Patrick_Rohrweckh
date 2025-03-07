@@ -19,7 +19,7 @@ namespace MTCG_Patrick_Rohrweckh.Models
     }
     public class MonsterCard : Card
     {
-        public MonsterCard(string id, string name, float amount) : base(id, name, amount)
+        public MonsterCard(string id, string name, double damage) : base(id, name, damage)
         {
             if(Name.Contains("Goblin"))
             {
