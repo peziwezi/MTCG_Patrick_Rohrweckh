@@ -25,16 +25,32 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                         {
                             try
                             {
-                                DataUser dataUser = dataHandler.userHandler.RetrieveUser(request.token);
-                                if (dataUser.Coins <= 0)
+                                int id = dataHandler.packageHandler.ChoosePackage();
+                                if ( id == 0)
                                 {
-                                    response.WriteResponse(412, "Not enough money", "");
+                                    throw new ArgumentException("No Package left");
                                 }
                                 else
-                                {
-                                    dataUser.Coins -= 5;
-                                    dataHandler.userHandler.UpdateUser(dataUser);
-                                    response.WriteResponse(201, "", "");
+                                { 
+                                    DataUser dataUser = dataHandler.userHandler.RetrieveUser(request.token);
+                                    if (dataUser.Coins <= 0)
+                                    {
+                                        response.WriteResponse(412, "Not enough money", "");
+                                    }
+                                    else
+                                    {
+                                        DataPackage dataPackage = dataHandler.packageHandler.RetrievePackage(id);
+                                        List<string> CardIds = [dataPackage.CardId1, dataPackage.CardId2, dataPackage.CardId3, dataPackage.CardId4, dataPackage.CardId5];
+                                        for (int i = 0; i < 5; i++)
+                                        {
+                                           DataStack temp = new DataStack(dataUser.Id, CardIds[i], "Stack");
+                                            dataHandler.stackHandler.CreateStack(temp);
+                                        }
+                                        dataHandler.packageHandler.DeletePackage(dataPackage);
+                                        dataUser.Coins -= 5;
+                                        dataHandler.userHandler.UpdateUser(dataUser);
+                                        response.WriteResponse(201, "", "");
+                                    }
                                 }
                             }
                             catch (ArgumentException)

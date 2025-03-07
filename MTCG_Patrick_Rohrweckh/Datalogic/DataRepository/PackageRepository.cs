@@ -1,4 +1,5 @@
-﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
+﻿using MTCG_Patrick_Rohrweckh.Businesslogic;
+using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,20 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             AddParameterWithValue(command, "cardid5", DbType.String, package.CardId5 ?? (object)DBNull.Value);
             object? result = command.ExecuteScalar();
             package.Id = result != null ? Convert.ToInt32(result) : 0;
+        }
+        internal int ReturnId()
+        {
+            using IDbConnection connection = new NpgsqlConnection(connectionString);
+            using IDbCommand command = connection.CreateCommand();
+            connection.Open();
+
+            command.CommandText = @"SELECT id FROM packages";
+            using (IDataReader reader = command.ExecuteReader())
+                while (reader.Read())
+                {
+                    return reader.GetInt32(0);
+                }
+            return 0;
         }
         internal IEnumerable<DataPackage> GetAll()
         {

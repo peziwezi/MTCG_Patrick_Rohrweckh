@@ -32,11 +32,30 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
                 Console.WriteLine(package);
             }
         }
+        public DataPackage RetrievePackage(int? id)
+        {
+            // Retrieve:
+            Console.WriteLine("Retrieve:");
+            if (PackageRepository.GetById(id) == null)
+            {
+                throw new ArgumentException("User already exists");
+            }
+            else
+            {
+                return PackageRepository.GetById(id);
+            }
+        }
         public void RetrieveAll()
         {
             // Retrieve:
             Console.WriteLine("Retrieve:");
             PackageRepository.GetAll().ToList().ForEach(p => Console.WriteLine(p));
+        }
+        public int ChoosePackage()
+        {
+            Console.WriteLine("Retrieve:");
+            int id = PackageRepository.ReturnId();
+            return id;
         }
         public void DeletePackage(DataPackage package)
         {

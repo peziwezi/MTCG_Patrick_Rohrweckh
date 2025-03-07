@@ -16,7 +16,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
                 "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
         }
         public StackRepository StackRepository;
-        public void CreateUser(DataStack stack)
+        public void CreateStack(DataStack stack)
         {
             // Create:
             Console.WriteLine("Create:");
