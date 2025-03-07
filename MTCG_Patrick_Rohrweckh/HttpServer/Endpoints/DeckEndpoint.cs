@@ -1,5 +1,6 @@
 ﻿using MTCG_Patrick_Rohrweckh.Datalogic.DataHandler;
 using MTCG_Patrick_Rohrweckh.Datalogic.DataModel;
+using MTCG_Patrick_Rohrweckh.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,47 @@ namespace MTCG_Patrick_Rohrweckh.HttpServer.Endpoints
                             catch (Npgsql.NpgsqlException)
                             {
                                 response.WriteResponse(503, "Unable to connect to database ", "");
+                            }
+                        }
+                        else
+                        {
+                            response.WriteResponse(403, "Forbidden", "");
+                        }
+                    }
+                    else if(request.method == "PUT")
+                    {
+                        if (request.token != "" && request.token != null)
+                        {
+                            try
+                            {
+                                DataUser dataUser = dataHandler.userHandler.RetrieveUser(request.token);
+                                Deck deck = JsonConvert.DeserializeObject<Deck>(request.content);
+
+                                for(int i = 0; i < deck.DeckMax; i++)
+                                {
+                                    if(dataHandler.stackHandler.CountDeck(dataUser.Id) < 4)
+                                    { 
+                                        DataStack stack = new DataStack(dataUser.Id, deck.Cards[i].Id, "Deck");
+                                        dataHandler.stackHandler.UpdateStack(stack);
+                                    }
+                                    else
+                                    {
+                                        throw new ArgumentException("Deck Full");
+                                    }
+                                }
+                                response.WriteResponse(200, "", "");
+                            }
+                            catch (ArgumentException)
+                            {
+                                response.WriteResponse(409, "Unable to fill Deck ", "");
+                            }
+                            catch (Npgsql.NpgsqlException)
+                            {
+                                response.WriteResponse(503, "Unable to connect to database ", "");
+                            }
+                            catch (JsonReaderException)
+                            {
+                                response.WriteResponse(400, "Bad Request", "");
                             }
                         }
                         else

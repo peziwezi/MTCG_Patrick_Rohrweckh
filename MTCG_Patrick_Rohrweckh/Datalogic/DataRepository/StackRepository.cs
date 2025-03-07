@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
 {
-    internal class StackRepository(string connectionString)
+    public class StackRepository(string connectionString)
     {
         private readonly string connectionString = connectionString;
 
@@ -72,6 +72,24 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
             }
             return null;
         }
+        internal int? DeckAmount(int? userid)
+        {
+            if (userid == null)
+                throw new ArgumentException("Id must not be null");
+
+            using IDbConnection connection = new NpgsqlConnection(connectionString);
+            using IDbCommand command = connection.CreateCommand();
+            connection.Open();
+            command.CommandText = @"SELECT COUNT(stacktype) FROM stacks WHERE userid=@userid AND stacktype = 'Deck'";
+            AddParameterWithValue(command, "userid", DbType.Int32, userid ?? (object)DBNull.Value);
+
+            using IDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return reader.GetInt32(0);
+            }
+            return null;
+        }
         internal IEnumerable<DataStack> GetAllById(int? userid)
         {
             List<DataStack> result = [];
@@ -116,6 +134,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                 }
             return result;
         }
+
         internal void Update(DataStack stack)
         {
             if (stack.UserId == null || stack.CardId == null)

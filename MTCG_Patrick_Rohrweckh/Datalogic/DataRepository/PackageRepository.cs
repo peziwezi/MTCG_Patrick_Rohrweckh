@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
 {
-    class PackageRepository(string connectionString)
+    public class PackageRepository(string connectionString)
     {
         private readonly string connectionString = connectionString;
         internal int? Add(DataPackage package)

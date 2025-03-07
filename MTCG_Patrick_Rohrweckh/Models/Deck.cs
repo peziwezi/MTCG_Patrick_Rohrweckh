@@ -13,6 +13,18 @@ namespace MTCG_Patrick_Rohrweckh.Models
         {
             Cards = new List<Card>();
         }
-        public const int DeckMax = 4;
+        public Deck(List<Card> cards)
+        {
+            if(cards.Count == 4)
+            {
+                Cards = cards;
+            }
+            else
+            {
+                throw new ArgumentException("A deck needs exactly 4 elements");
+            }
+        }
+
+        public readonly int DeckMax = 4;
     }
 }

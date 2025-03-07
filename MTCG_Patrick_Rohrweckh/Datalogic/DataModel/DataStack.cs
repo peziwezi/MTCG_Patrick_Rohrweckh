@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataModel
 {
-    class DataStack
+    public class DataStack
     {
         public DataStack()
         {

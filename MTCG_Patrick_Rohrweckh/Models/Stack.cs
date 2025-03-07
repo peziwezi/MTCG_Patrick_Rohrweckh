@@ -13,5 +13,9 @@ namespace MTCG_Patrick_Rohrweckh.Models
         {
             Cards = new List<Card>();
         }
+        public Stack(List<Card> cards)
+        {
+            Cards = cards;
+        }
     }
 }

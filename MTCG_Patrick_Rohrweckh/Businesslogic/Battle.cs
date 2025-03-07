@@ -18,36 +18,55 @@ namespace MTCG_Patrick_Rohrweckh.Businesslogic
     {
         public Battle(Deck playerDeck1, Deck playerDeck2)
         {
-            Random random = new Random();
-            for (int i = 0; i < 100; i++)
-            {
-                
-                Card card1 = playerDeck1.Cards[random.Next(playerDeck1.Cards.Count)];
-                Card card2 = playerDeck2.Cards[random.Next(playerDeck2.Cards.Count)];
-                Card winner = Fight(card1, card2);
-                if(card1 == winner)
-                {
-                    playerDeck2.Cards.Remove(card2);
-                    playerDeck1.Cards.Add(card2);
-                }
-                else if(card2 == winner) 
-                {
-                    playerDeck1.Cards.Remove(card1);
-                    playerDeck2.Cards.Add(card1);
-                }
-                if(playerDeck1.Cards.Count == 0)
-                {
-                    break;
-                }
-                else if(playerDeck2.Cards.Count == 0)
-                {
-                    break;
-                }
-            }
+            PlayerDeck1 = playerDeck1;
+            PlayerDeck2 = playerDeck2;
+            
         }
         public Battle()
         {
 
+        }
+        public Deck PlayerDeck1 { get; set; }
+        public Deck PlayerDeck2 { get; set; }
+        public string Winner { get; set; }
+        public void Duel()
+        {
+            Random random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+
+                Card card1 = PlayerDeck1.Cards[random.Next(PlayerDeck1.Cards.Count)];
+                Card card2 = PlayerDeck2.Cards[random.Next(PlayerDeck2.Cards.Count)];
+                Card winner = Fight(card1, card2);
+                if (card1 == winner)
+                {
+                    PlayerDeck2.Cards.Remove(card2);
+                    PlayerDeck1.Cards.Add(card2);
+                }
+                else if (card2 == winner)
+                {
+                    PlayerDeck1.Cards.Remove(card1);
+                    PlayerDeck2.Cards.Add(card1);
+                }
+                if (PlayerDeck1.Cards.Count == 0)
+                {
+                    Winner = "Player2";
+                    break;
+                }
+                else if (PlayerDeck2.Cards.Count == 0)
+                {
+                    Winner = "Player1";
+                    break;
+                }
+                else
+                {
+                    Winner = "Draw";
+                }
+            }
+        }
+        public string ProclaimWinner()
+        {
+            return Winner;
         }
         public Card Fight(Card card1, Card card2)
         {
@@ -68,100 +87,130 @@ namespace MTCG_Patrick_Rohrweckh.Businesslogic
             Result winner;
             double damage1 = card1.Damage;
             double damage2 = card2.Damage;
-            if(!(card1.CardType == CardType.monster && card2.CardType == CardType.monster))
+            if (card1.CardType == CardType.monster && card2.CardType == CardType.spell)
             {
-                if (card1.CardType == CardType.monster)
+                MonsterCard card1m = (MonsterCard)card1;
+                if(card1m.MonsterType == Monster.Knight && card2.ElementType == Element.water)
                 {
-                    MonsterCard card1m = (MonsterCard)card1;
-                    if(card1m.MonsterType == Monster.Knight && card2.ElementType == Element.water)
-                    {
-                        return Result.Card2;
-                    }
-                    else if(card1m.MonsterType == Monster.Kraken)
-                    {
-                        damage2 = 0;
-                    }
-                    else
-                    {
-                        if(card1m.ElementType == Element.water && card2.ElementType == Element.fire)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if( card1m.ElementType == Element.fire && card2.ElementType == Element.normal)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if (card1m.ElementType == Element.normal && card2.ElementType == Element.water)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if (card1m.ElementType == Element.fire && card2.ElementType == Element.water)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
-                        else if (card1m.ElementType == Element.normal && card2.ElementType == Element.fire)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
-                        else if (card1m.ElementType == Element.water && card2.ElementType == Element.normal)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
-                    }
+                    return Result.Card2;
                 }
-                else if (card2.CardType == CardType.monster)
+                else if(card1m.MonsterType == Monster.Kraken)
                 {
-                    MonsterCard card2m = (MonsterCard)card2;
-                    if (card2m.MonsterType == Monster.Knight && card1.ElementType == Element.water)
+                    damage2 = 0;
+                }
+                else
+                {
+                    if(card1m.ElementType == Element.water && card2.ElementType == Element.fire)
                     {
-                        return Result.Card1;
+                        damage1 *= 2;
+                        damage2 /= 2;
                     }
-                    else if (card2m.MonsterType == Monster.Kraken)
+                    else if( card1m.ElementType == Element.fire && card2.ElementType == Element.normal)
                     {
-                        damage1 = 0;
+                        damage1 *= 2;
+                        damage2 /= 2;
                     }
-                    else
+                    else if (card1m.ElementType == Element.normal && card2.ElementType == Element.water)
                     {
-                        if (card1.ElementType == Element.water && card2m.ElementType == Element.fire)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if (card1.ElementType == Element.fire && card2m.ElementType == Element.normal)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if (card1.ElementType == Element.normal && card2m.ElementType == Element.water)
-                        {
-                            damage1 *= 2;
-                            damage2 /= 2;
-                        }
-                        else if (card1.ElementType == Element.fire && card2m.ElementType == Element.water)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
-                        else if (card1.ElementType == Element.normal && card2m.ElementType == Element.fire)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
-                        else if (card1.ElementType == Element.water && card2m.ElementType == Element.normal)
-                        {
-                            damage1 /= 2;
-                            damage2 *= 2;
-                        }
+                        damage1 *= 2;
+                        damage2 /= 2;
+                    }
+                    else if (card1m.ElementType == Element.fire && card2.ElementType == Element.water)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
+                    }
+                    else if (card1m.ElementType == Element.normal && card2.ElementType == Element.fire)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
+                    }
+                    else if (card1m.ElementType == Element.water && card2.ElementType == Element.normal)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
                     }
                 }
             }
-            else
+            else if (card2.CardType == CardType.monster && card1.CardType == CardType.spell)
+            {
+                MonsterCard card2m = (MonsterCard)card2;
+                if (card2m.MonsterType == Monster.Knight && card1.ElementType == Element.water)
+                {
+                    return Result.Card1;
+                }
+                else if (card2m.MonsterType == Monster.Kraken)
+                {
+                    damage1 = 0;
+                }
+                else
+                {
+                    if (card1.ElementType == Element.water && card2m.ElementType == Element.fire)
+                    {
+                        damage1 *= 2;
+                        damage2 /= 2;
+                    }
+                    else if (card1.ElementType == Element.fire && card2m.ElementType == Element.normal)
+                    {
+                        damage1 *= 2;
+                        damage2 /= 2;
+                    }
+                    else if (card1.ElementType == Element.normal && card2m.ElementType == Element.water)
+                    {
+                        damage1 *= 2;
+                        damage2 /= 2;
+                    }
+                    else if (card1.ElementType == Element.fire && card2m.ElementType == Element.water)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
+                    }
+                    else if (card1.ElementType == Element.normal && card2m.ElementType == Element.fire)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
+                    }
+                    else if (card1.ElementType == Element.water && card2m.ElementType == Element.normal)
+                    {
+                        damage1 /= 2;
+                        damage2 *= 2;
+                    }
+                }
+            }
+            else if (card1.CardType == CardType.spell && card2.CardType == CardType.spell)
+            {
+                if (card1.ElementType == Element.water && card2.ElementType == Element.fire)
+                {
+                    damage1 *= 2;
+                    damage2 /= 2;
+                }
+                else if (card1.ElementType == Element.fire && card2.ElementType == Element.normal)
+                {
+                    damage1 *= 2;
+                    damage2 /= 2;
+                }
+                else if (card1.ElementType == Element.normal && card2.ElementType == Element.water)
+                {
+                    damage1 *= 2;
+                    damage2 /= 2;
+                }
+                else if (card1.ElementType == Element.fire && card2.ElementType == Element.water)
+                {
+                    damage1 /= 2;
+                    damage2 *= 2;
+                }
+                else if (card1.ElementType == Element.normal && card2.ElementType == Element.fire)
+                {
+                    damage1 /= 2;
+                    damage2 *= 2;
+                }
+                else if (card1.ElementType == Element.water && card2.ElementType == Element.normal)
+                {
+                    damage1 /= 2;
+                    damage2 *= 2;
+                }
+            }
+            else if (card1.CardType == CardType.monster && card2.CardType == CardType.monster)
             {
                 MonsterCard card1m = (MonsterCard)card1;
                 MonsterCard card2m = (MonsterCard)card2;

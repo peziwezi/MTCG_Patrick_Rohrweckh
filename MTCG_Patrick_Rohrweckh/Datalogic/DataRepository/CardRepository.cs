@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
 {
-    class CardRepository(string connectionString)
+    public class CardRepository(string connectionString)
     {
         private readonly string connectionString = connectionString;
         internal void Add(DataCard card)

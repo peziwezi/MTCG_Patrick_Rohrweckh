@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
 {
-    class CardHandler
+    public class CardHandler
     {
-        public CardHandler()
+        public CardHandler(CardRepository cardRepository)
         {
-            CardRepository = new CardRepository(
-                "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
+            CardRepository = cardRepository;
         }
         public CardRepository CardRepository;
         public void CreateCard(DataCard card)

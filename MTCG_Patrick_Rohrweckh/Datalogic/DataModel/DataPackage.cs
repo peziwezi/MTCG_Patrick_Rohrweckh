@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataModel
 {
-    class DataPackage
+    public class DataPackage
     {
         public DataPackage()
         {

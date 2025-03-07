@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
 {
-    class StackHandler
+    public class StackHandler
     {
-        public StackHandler()
+        public StackHandler(StackRepository stackRepository)
         {
-            StackRepository = new StackRepository(
-                "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
+            StackRepository = stackRepository;
         }
         public StackRepository StackRepository;
         public void CreateStack(DataStack stack)
@@ -42,7 +41,7 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             Console.WriteLine("Retrieve:");
             return StackRepository.GetAllById(userid).ToList();
         }
-        public DataStack RetrieveStack(int userid, string cardid)
+        public DataStack RetrieveStack(int? userid, string cardid)
         {
             // Retrieve:
             Console.WriteLine("Retrieve:");
@@ -60,6 +59,12 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
             // Retrieve:
             Console.WriteLine("Retrieve:");
             return StackRepository.GetDeckById(userid).ToList();
+        }
+        public int? CountDeck(int? userid)
+        {
+            // Retrieve:
+            Console.WriteLine("Retrieve:");
+            return StackRepository.DeckAmount(userid);
         }
         public void UpdateStack(DataStack stack)
         {

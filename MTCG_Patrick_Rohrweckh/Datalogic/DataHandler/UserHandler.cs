@@ -4,12 +4,11 @@ using MTCG_Patrick_Rohrweckh.Models;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
 {
-    internal class UserHandler
+    public class UserHandler
     {
-        public UserHandler()
+        public UserHandler(UserRepository userRepository)
         {
-            UserRepository = new UserRepository(
-                "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
+            UserRepository = userRepository;
         }
         public UserRepository UserRepository;
         public void CreateUser(DataUser user)

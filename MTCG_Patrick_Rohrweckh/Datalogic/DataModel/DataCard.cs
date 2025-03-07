@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataModel
 {
-    class DataCard
+    public class DataCard
     {
         public DataCard()
         {

@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataHandler
 {
-    class PackageHandler
+    public class PackageHandler
     {
-        public PackageHandler()
+        public PackageHandler(PackageRepository packageRepository)
         {
-            PackageRepository = new PackageRepository(
-                "Host=localhost;Username=postgres;Password=password;Database=mtcgdb");
+            PackageRepository = packageRepository;
         }
         public PackageRepository PackageRepository;
         public int? CreatePackage(string status)

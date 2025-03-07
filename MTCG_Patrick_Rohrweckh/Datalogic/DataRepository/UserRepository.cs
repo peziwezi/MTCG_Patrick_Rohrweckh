@@ -5,7 +5,7 @@ using System;
 using System.Data;
 namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
 {
-    internal class UserRepository(string connectionString)
+    public class UserRepository(string connectionString)
     {
         private readonly string connectionString = connectionString;
 
