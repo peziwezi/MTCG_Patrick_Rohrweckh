@@ -44,10 +44,10 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                     {
                         Id = reader.GetInt32(0),
                         CardId1 = reader.GetString(1),
-                        CardId2 = reader.GetString(1),
-                        CardId3 = reader.GetString(1),
-                        CardId4 = reader.GetString(1),
-                        CardId5 = reader.GetString(1),
+                        CardId2 = reader.GetString(2),
+                        CardId3 = reader.GetString(3),
+                        CardId4 = reader.GetString(4),
+                        CardId5 = reader.GetString(5),
                     });
                 }
             return result;
@@ -71,10 +71,10 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                 {
                     Id = reader.GetInt32(0),
                     CardId1 = reader.GetString(1),
-                    CardId2 = reader.GetString(1),
-                    CardId3 = reader.GetString(1),
-                    CardId4 = reader.GetString(1),
-                    CardId5 = reader.GetString(1),
+                    CardId2 = reader.GetString(2),
+                    CardId3 = reader.GetString(3),
+                    CardId4 = reader.GetString(4),
+                    CardId5 = reader.GetString(5),
                 };
             }
             return null;

@@ -39,9 +39,9 @@ namespace MTCG_Patrick_Rohrweckh.Datalogic.DataRepository
                 {
                     result.Add(new DataCard()
                     {
-                        Id = reader.GetString(1),
+                        Id = reader.GetString(0),
                         Name = reader.GetString(1),
-                        Damage = reader.GetFloat(24)
+                        Damage = reader.GetFloat(2)
                     });
                 }
             return result;

@@ -1,4 +1,4 @@
-# PersonDB
+# MtcgDB
 
 A demo project to show how to access a PostgreSQL database via ADO.Net.
 The CRUD operations are implemented using the Repository pattern.
